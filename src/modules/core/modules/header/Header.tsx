@@ -9,7 +9,7 @@ const Header = () => {
       backgroundColor: Colors.BLACK,
     },
     logo: {
-      fontFamily: Fonts.ARIAL,
+      fontFamily: Fonts.INK,
       fontSize: 24,
       fontWeight: '700',
     },

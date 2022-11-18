@@ -4,4 +4,5 @@ export enum Colors {
 
 export enum Fonts {
   ARIAL = 'Arial',
+  INK = 'Ink',
 }
