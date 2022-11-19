@@ -9,7 +9,9 @@ export const useController = () => {
   const [label, setLabel] = useState('');
   const [value, setValue] = useState('');
   const [type, setType] = useState('');
-  const [activeCheckboxId, setActiveCheckboxId] = useState(1);
+  const [activeCheckboxId, setActiveCheckboxId] = useState(
+    typeTab.length ? typeTab[0].id : 1,
+  );
 
   const handlerChooserType = ({valueType, id}: typeof typeTab[0]) => {
     setActiveCheckboxId(id);
@@ -22,6 +24,9 @@ export const useController = () => {
         value: value.toLowerCase(),
         type: type.toLowerCase(),
       });
+      setLabel('');
+      setValue('');
+      setType('');
     } else {
       Alert.alert('Error', 'Fill in all the fields');
     }
