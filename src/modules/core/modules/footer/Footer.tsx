@@ -1,7 +1,7 @@
 import React from 'react';
-import {FooterContainer} from './styled';
-import {Button, Text} from 'react-native';
+import {ButtonContainer, FooterContainer} from './styled';
 import {NavigationEnum} from '../../utils/enums/navigation';
+import Button from '../../component/button/Button';
 type Props = {
   navigate: (RouteName: NavigationEnum) => void;
   currentRouter?: string;
@@ -9,15 +9,21 @@ type Props = {
 const Footer = ({navigate}: Props) => {
   return (
     <FooterContainer>
-      <Button
-        title={'ADD_WORD'}
-        onPress={() => navigate(NavigationEnum.ADD_WORD)}
-      />
-      <Button title={'HOME'} onPress={() => navigate(NavigationEnum.HOME)} />
-      <Button
-        title={'WORD_LIST'}
-        onPress={() => navigate(NavigationEnum.WORD_LIST)}
-      />
+      <ButtonContainer>
+        <Button
+          title={'ADD_WORD'}
+          onPress={() => navigate(NavigationEnum.ADD_WORD)}
+        />
+      </ButtonContainer>
+      <ButtonContainer>
+        <Button title={'HOME'} onPress={() => navigate(NavigationEnum.HOME)} />
+      </ButtonContainer>
+      <ButtonContainer>
+        <Button
+          title={'WORD_LIST'}
+          onPress={() => navigate(NavigationEnum.WORD_LIST)}
+        />
+      </ButtonContainer>
     </FooterContainer>
   );
 };
