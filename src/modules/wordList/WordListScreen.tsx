@@ -1,8 +1,8 @@
 import React from 'react';
 import WordListLayout from './layout/WordListLayout';
 
-const WordList = () => {
+const WordListScreen = () => {
   return <WordListLayout />;
 };
 
-export default WordList;
+export default WordListScreen;

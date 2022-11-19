@@ -9,7 +9,6 @@ type Props = {
 const Footer = ({navigate}: Props) => {
   return (
     <FooterContainer>
-      <Text>footer</Text>
       <Button
         title={'ADD_WORD'}
         onPress={() => navigate(NavigationEnum.ADD_WORD)}

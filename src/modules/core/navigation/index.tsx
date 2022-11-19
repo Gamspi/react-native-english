@@ -6,7 +6,7 @@ import {
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../../home/Home';
 import AddWord from '../../addWord/AddWord';
-import WordList from '../../wordList/WordList';
+import WordListScreen from '../../wordList/WordListScreen';
 import {NavigationEnum} from '../utils/enums/navigation';
 
 const {Screen, Navigator} = createStackNavigator();
@@ -35,7 +35,7 @@ export default function Navigation({navigationRef}: Props) {
           />
           <Screen
             name={NavigationEnum.WORD_LIST}
-            component={WordList}
+            component={WordListScreen}
             options={{
               headerShown: false,
             }}
