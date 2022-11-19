@@ -1,17 +1,41 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../../home/Home';
+import AddWord from '../../addWord/AddWord';
+import WordList from '../../wordList/WordList';
+import {NavigationEnum} from '../utils/enums/navigation';
 
 const {Screen, Navigator} = createStackNavigator();
-export default function Navigation() {
+
+type Props = {
+  navigationRef: ReturnType<typeof useNavigationContainerRef>;
+};
+export default function Navigation({navigationRef}: Props) {
   return (
     <>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <Navigator>
           <Screen
-            name="Home"
+            name={NavigationEnum.HOME}
             component={Home}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Screen
+            name={NavigationEnum.ADD_WORD}
+            component={AddWord}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Screen
+            name={NavigationEnum.WORD_LIST}
+            component={WordList}
             options={{
               headerShown: false,
             }}

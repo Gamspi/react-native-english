@@ -10,7 +10,7 @@ const Header = () => {
         title={'click'}
         onPress={() => {
           console.log('click');
-          // navigation.navigate('Home');
+          // navigation.navigate('WordList');
         }}
       />
     </Container>
