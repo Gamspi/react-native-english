@@ -6,12 +6,18 @@ import SplashScreen from 'react-native-splash-screen';
 import Navigation from '../navigation';
 import Footer from '../modules/footer/Footer';
 import {useNavigationContainerRef} from '@react-navigation/native';
+import {useAction} from '../hooks/useActions';
 const CoreLayout = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const {initBaseData} = useAction();
   useEffect(() => {
+    // initBaseData();
+  }, []);
+  useEffect(() => {
+    initBaseData();
     SplashScreen.hide();
   }, []);
   const navigationRef = useNavigationContainerRef();

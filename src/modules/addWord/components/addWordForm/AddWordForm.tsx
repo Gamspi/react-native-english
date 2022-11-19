@@ -5,13 +5,13 @@ import {StyledAddWordForm} from './stiled';
 import {useController} from './controller';
 
 const AddWordForm = () => {
-  const {word, value, handlerAddWord, setWord, setValue} = useController();
+  const {label, value, handlerAddWord, setLabel, setValue} = useController();
   return (
     <StyledAddWordForm>
       <Input
         placeholder="Word"
-        value={word}
-        onChangeText={setWord}
+        value={label}
+        onChangeText={setLabel}
         label="Word"
       />
       <Input
@@ -20,7 +20,12 @@ const AddWordForm = () => {
         onChangeText={setValue}
         label="Value"
       />
-      <Button title={'Add word'} onPress={handlerAddWord} />
+      <Button
+        title={'Add word'}
+        onPress={() => {
+          handlerAddWord();
+        }}
+      />
     </StyledAddWordForm>
   );
 };

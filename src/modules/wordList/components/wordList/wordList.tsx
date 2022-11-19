@@ -5,11 +5,13 @@ import {WordListContainer} from './styled';
 
 const WordList = () => {
   const {words} = useTypeSelector(state => state.word);
-  return (
+  return words.length ? (
     <WordListContainer
       data={words}
       renderItem={({item}) => <Text>{item.value}</Text>}
     />
+  ) : (
+    <Text> not find</Text>
   );
 };
 

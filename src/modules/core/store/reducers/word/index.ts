@@ -1,32 +1,13 @@
-import {cardsState, WordActionEnum, CardsAction} from './types';
+import {cardsState, WordActionEnum, WordAction} from './types';
 
 const initialState: cardsState = {
-  words: [
-    {
-      id: '1',
-      label: 'lABEL',
-      value: 'value',
-    },
-    {
-      id: '2',
-      label: 'lABEL',
-      value: 'value',
-    },
-    {
-      id: '3',
-      label: 'lABEL',
-      value: 'value',
-    },
-  ],
+  words: [],
 };
 
-const cardsReducer = (
-  state = initialState,
-  action: CardsAction,
-): cardsState => {
+const cardsReducer = (state = initialState, action: WordAction): cardsState => {
   switch (action.type) {
     case WordActionEnum.SET_WORD_LIST:
-      return {...state, words: [...state.words, action.payload]};
+      return {...state, words: [...action.payload]};
     default:
       return state;
   }

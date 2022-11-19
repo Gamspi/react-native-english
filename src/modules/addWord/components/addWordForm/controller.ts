@@ -3,30 +3,23 @@ import {useState} from 'react';
 import {useAction} from '../../../core/hooks/useActions';
 
 export const useController = () => {
-  const [word, setWord] = useState('');
+  const [label, setLabel] = useState('');
   const [value, setValue] = useState('');
-  const {setWordList} = useAction();
+  const {addWord} = useAction();
   const handlerAddWord = () => {
-    if (word && value) {
-      console.log({
-        word,
+    if (label && value) {
+      addWord({
+        label,
         value,
       });
-      setWordList({
-        value,
-        label: word,
-        id: Date.now().toString(),
-      });
-      setWord('');
-      setValue('');
     } else {
       Alert.alert('Error', 'Fill in all the fields');
     }
   };
   return {
-    word,
+    label,
     value,
-    setWord,
+    setLabel,
     setValue,
     handlerAddWord,
   };
