@@ -19,10 +19,8 @@ export const WordActionCreators = {
     await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
   },
 
-  addWord:
-    ({value, label}: Omit<Word, 'id'>) =>
-    async (dispatch: appDispatch) => {
-      await bd.add(label, value);
-      await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
-    },
+  addWord: (word: Omit<Word, 'id'>) => async (dispatch: appDispatch) => {
+    await bd.add(word);
+    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
+  },
 };

@@ -21,7 +21,7 @@ export class WordBaseData {
     this.db.transaction(tx => {
       tx.executeSql(
         // 'DROP TABLE Words',
-        'CREATE TABLE IF NOT EXISTS Words (id INTEGER PRIMARY KEY AUTOINCREMENT, label VARCHAR(20), value VARCHAR(20))',
+        'CREATE TABLE IF NOT EXISTS Words (id INTEGER PRIMARY KEY AUTOINCREMENT, label VARCHAR(30), value VARCHAR(30),type VARCHAR(30))',
         [],
         () => {
           console.log('created');
@@ -33,11 +33,11 @@ export class WordBaseData {
     });
   };
 
-  async add(label, value) {
+  async add({label, value, type}) {
     await this.db.transaction(txn => {
       txn.executeSql(
-        'INSERT INTO Words (label, value) VALUES (?, ?)',
-        [label, value],
+        'INSERT INTO Words (label, value, type) VALUES (?, ?, ?)',
+        [label, value, type],
         () => {
           console.log('added successfully');
         },
