@@ -26,7 +26,7 @@ const cardsReducer = (
 ): cardsState => {
   switch (action.type) {
     case WordActionEnum.SET_WORD_LIST:
-      return {...state, words: [...state.words]};
+      return {...state, words: [...state.words, action.payload]};
     default:
       return state;
   }

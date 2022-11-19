@@ -7,4 +7,10 @@ export const StiledInput = styled.TextInput`
   color: ${Colors.BLACK};
   border-radius: 8px;
   padding: 10px;
+  margin-bottom: 32px;
+`;
+
+export const StiledLabel = styled.Text`
+  color: ${Colors.WHITE};
+  padding-bottom: 10px;
 `;

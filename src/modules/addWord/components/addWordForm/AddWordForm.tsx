@@ -1,30 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, Button, Alert} from 'react-native';
+import React from 'react';
+import {Button} from 'react-native';
 import Input from '../Input/input';
+import {StyledAddWordForm} from './stiled';
+import {useController} from './controller';
 
 const AddWordForm = () => {
-  const [word, setWord] = useState('');
-  const [value, setValue] = useState('');
-  const handlerAddWord = () => {
-    if (word && value) {
-      console.log({
-        word,
-        value,
-      });
-      setWord('');
-      setValue('');
-    } else {
-      Alert.alert('Error', 'Fill in all the fields');
-    }
-  };
+  const {word, value, handlerAddWord, setWord, setValue} = useController();
   return (
-    <View>
-      <Text>Word</Text>
-      <Input placeholder="Word" value={word} onChangeText={setWord} />
-      <Text>Value</Text>
-      <Input placeholder="Value" value={value} onChangeText={setValue} />
+    <StyledAddWordForm>
+      <Input
+        placeholder="Word"
+        value={word}
+        onChangeText={setWord}
+        label="Word"
+      />
+      <Input
+        placeholder="Value"
+        value={value}
+        onChangeText={setValue}
+        label="Value"
+      />
       <Button title={'Add word'} onPress={handlerAddWord} />
-    </View>
+    </StyledAddWordForm>
   );
 };
 export default AddWordForm;
