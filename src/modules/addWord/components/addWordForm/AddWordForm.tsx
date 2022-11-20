@@ -35,6 +35,7 @@ const AddWordForm = () => {
           isActive={item.id === activeCheckboxId}
           key={item.id}
           label={item.valueType}
+          isDisabled={item.id === activeCheckboxId}
           onPress={() => handlerChooserType(item)}
         />
       ))}

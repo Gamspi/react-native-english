@@ -9,15 +9,17 @@ import {
 } from './styled';
 type Props = {
   isActive: boolean;
+  isDisabled?: boolean;
   label: string;
 };
 const Checkbox = ({
   onPress,
   label,
+  isDisabled,
   ...props
 }: Props & ComponentProps<TouchableOpacity>) => {
   return (
-    <StyledCheckBox onPress={onPress}>
+    <StyledCheckBox onPress={onPress} disabled={isDisabled}>
       <StyledCheckBoxContainer>
         <StyledCheckBoxDot {...props} />
       </StyledCheckBoxContainer>
