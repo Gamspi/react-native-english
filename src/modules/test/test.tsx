@@ -1,24 +1,19 @@
-import React from 'react';
-import {RefreshControl, ScrollView, Text} from 'react-native';
+import React, {useState} from 'react';
+import {RefreshControl, ScrollView, Switch, Text} from 'react-native';
 import Screen from '../core/component/screen/Screen';
-const wait = timeout => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-};
-const TestPage = () => {
-  const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
+const TestPage = () => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <Screen>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-        <Text>Pull down to see RefreshControl indicator</Text>
-      </ScrollView>
+      <Switch
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
     </Screen>
   );
 };
