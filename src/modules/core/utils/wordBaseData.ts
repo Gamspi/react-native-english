@@ -63,6 +63,22 @@ export class WordBaseData {
     });
   }
 
+  async upDate(id, label, value, type) {
+    const stringValue = JSON.stringify(value);
+    await this.db.transaction(txn => {
+      txn.executeSql(
+        `UPDATE Words SET value=?, label=?, type=? WHERE id=${id}`,
+        [stringValue, label, type],
+        () => {
+          console.log('update successfully');
+        },
+        error => {
+          console.log('error on adding category ' + error.message);
+        },
+      );
+    });
+  }
+
   async get(resolve: (result: Word[]) => void) {
     await this.db.transaction(txn => {
       txn.executeSql(

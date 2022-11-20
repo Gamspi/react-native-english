@@ -9,7 +9,7 @@ import {
 } from '../../../core/utils/helpers/valueTransformation';
 
 export const useController = () => {
-  const {addWord} = useAction();
+  const {addWord, updateWord} = useAction();
   const {words} = useTypeSelector(state => state.word);
 
   const [label, setLabel] = useState('');
@@ -34,6 +34,7 @@ export const useController = () => {
     const addLabel = valueTransformation(label);
     const addValue = [...arrayValueTransformation(value.split(','))];
     const addType = valueTransformation(type);
+
     if (addLabel && addType && addValue.length) {
       const word = words.find(
         elem =>
@@ -41,10 +42,45 @@ export const useController = () => {
           elem.type === type.toLowerCase(),
       );
       if (word) {
-        Alert.alert(
-          'This word already exists',
-          'Do you wanna add another value?',
-        );
+        // addValue.reduce((acc,item) => {
+        //
+        // });
+        let is = false;
+        for (let i = 0; i < addValue.length; i++) {
+          if (word.value.includes(addValue[i])) {
+            is = true;
+            console.log(is);
+            break;
+          }
+        }
+        if (is) {
+          Alert.alert('Error', 'A word with this meaning already exists');
+        } else {
+          Alert.alert(
+            'This word already exists',
+            'Do you wanna add another value?',
+            [
+              {
+                text: 'Yes',
+                style: 'default',
+                onPress: () => {
+                  console.log(word);
+                  updateWord(
+                    word.id,
+                    word.label,
+                    [...word.value, ...addValue],
+                    word.type,
+                  );
+                  handelClearInputs();
+                },
+              },
+              {
+                text: 'No',
+                style: 'default',
+              },
+            ],
+          );
+        }
       } else {
         addWord({
           label: addLabel,

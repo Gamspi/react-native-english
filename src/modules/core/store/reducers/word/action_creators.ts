@@ -31,4 +31,8 @@ export const WordActionCreators = {
   update: () => async (dispatch: appDispatch) => {
     await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
   },
+  updateWord: (id, label, value, type) => async (dispatch: appDispatch) => {
+    await bd.upDate(id, label, value, type);
+    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
+  },
 };
