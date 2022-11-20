@@ -12,7 +12,7 @@ const AddWordForm = () => {
     value,
     activeCheckboxId,
     handlerAddWord,
-    setLabel,
+    handlerEnglishOnInput,
     setValue,
     handlerChooserType,
   } = useController();
@@ -21,7 +21,7 @@ const AddWordForm = () => {
       <Input
         placeholder="Word"
         value={label}
-        onChangeText={e => setLabel(e.replace(/([^a-z \s])|(\s(?=\s))/gi, ''))}
+        onChangeText={handlerEnglishOnInput}
         label="Word"
       />
       <Input

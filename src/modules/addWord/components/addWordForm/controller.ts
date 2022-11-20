@@ -18,6 +18,10 @@ export const useController = () => {
   const [activeCheckboxId, setActiveCheckboxId] = useState(
     typeTab.length ? typeTab[0].id : 1,
   );
+  const handlerEnglishOnInput = useCallback(
+    e => setLabel(e.replace(/([^a-z\s'])|(\s(?=\s))|('(?='))/gi, '')),
+    [],
+  );
 
   const handlerChooserType = useCallback(
     ({valueType, id}: typeof typeTab[0]) => {
@@ -130,7 +134,7 @@ export const useController = () => {
     value,
     activeCheckboxId,
     handlerChooserType,
-    setLabel,
+    handlerEnglishOnInput,
     setValue,
     handlerAddWord,
   };
