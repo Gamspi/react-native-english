@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Button} from 'react-native';
 import Input from '../Input/input';
 import {StyledAddWordForm} from './stiled';
@@ -49,4 +49,4 @@ const AddWordForm = () => {
     </StyledAddWordForm>
   );
 };
-export default AddWordForm;
+export default memo(AddWordForm);

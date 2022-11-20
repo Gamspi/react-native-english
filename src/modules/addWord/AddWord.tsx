@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 import AddWordLayout from './layout/AddWordLayout';
 
 const AddWord = () => {
   return <AddWordLayout />;
 };
 
-export default AddWord;
+export default memo(AddWord);

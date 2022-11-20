@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {Word} from '../../../core/store/reducers/word/types';
 import {
@@ -20,9 +20,7 @@ const WordItem = ({item: {value, label, type, id}, ...props}: Props) => {
   return (
     <TouchableOpacity
       onPress={toggleIsActive}
-      onLongPress={() => {
-        handelDeleteWord(id);
-      }}>
+      onLongPress={() => handelDeleteWord(id)}>
       <StyledWordItem {...props}>
         <StyledWordItemTitle>
           {label[0].toUpperCase() + label.slice(1)}
@@ -38,4 +36,4 @@ const WordItem = ({item: {value, label, type, id}, ...props}: Props) => {
   );
 };
 
-export default WordItem;
+export default memo(WordItem);

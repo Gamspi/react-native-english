@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {ButtonContainer, FooterContainer} from './styled';
 import {NavigationEnum} from '../../utils/enums/navigation';
 import {useController} from './controller';
@@ -45,4 +45,4 @@ const Footer = ({navigate, currentRouter}: Props) => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

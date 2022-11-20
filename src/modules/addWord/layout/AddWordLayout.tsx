@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import AddWordForm from '../components/addWordForm/AddWordForm';
 import Screen from '../../core/component/screen/Screen';
 
@@ -10,4 +10,4 @@ const AddWordLayout = () => {
   );
 };
 
-export default AddWordLayout;
+export default memo(AddWordLayout);

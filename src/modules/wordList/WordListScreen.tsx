@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 import WordListLayout from './layout/WordListLayout';
 
 const WordListScreen = () => {
   return <WordListLayout />;
 };
 
-export default WordListScreen;
+export default memo(WordListScreen);

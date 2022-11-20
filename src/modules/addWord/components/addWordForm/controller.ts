@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import {useState} from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import {useAction} from '../../../core/hooks/useActions';
 import {typeTab} from '../../constants/constants';
 import {useTypeSelector} from '../../../core/hooks/useTypeSelector';
@@ -19,67 +19,88 @@ export const useController = () => {
     typeTab.length ? typeTab[0].id : 1,
   );
 
-  const handlerChooserType = ({valueType, id}: typeof typeTab[0]) => {
-    setActiveCheckboxId(id);
-    setType(valueType.toLowerCase());
-  };
+  const handlerChooserType = useCallback(
+    ({valueType, id}: typeof typeTab[0]) => {
+      setActiveCheckboxId(id);
+      setType(valueType.toLowerCase());
+    },
+    [],
+  );
 
-  const handelClearInputs = () => {
+  const handelClearInputs = useCallback(() => {
     setLabel('');
     setValue('');
     setType(typeTab.length ? typeTab[0].valueType : '');
-  };
+  }, []);
 
-  const handlerAddWord = () => {
-    const addLabel = valueTransformation(label);
-    const addValue = [...arrayValueTransformation(value.split(','))];
-    const addType = valueTransformation(type);
+  const addLabel = useMemo(() => valueTransformation(label), [label]);
+  const addValue = useMemo(
+    () => [...arrayValueTransformation(value.split(','))],
+    [value],
+  );
 
-    if (addLabel && addType && addValue.length) {
-      const word = words.find(
+  const addType = useMemo(() => valueTransformation(type), [type]);
+
+  const word = useMemo(
+    () =>
+      words.find(
         elem =>
           elem.label.toLowerCase() === label.toLowerCase().trim() &&
           elem.type === type.toLowerCase(),
-      );
-      if (word) {
-        // addValue.reduce((acc,item) => {
-        //
-        // });
-        let is = false;
-        for (let i = 0; i < addValue.length; i++) {
-          if (word.value.includes(addValue[i])) {
-            is = true;
-            console.log(is);
-            break;
-          }
+      ),
+    [label, type, words],
+  );
+
+  const isValue = useMemo(() => {
+    if (word) {
+      for (let i = 0; i < addValue.length; i++) {
+        if (word.value.includes(addValue[i])) {
+          return true;
         }
-        if (is) {
-          Alert.alert('Error', 'A word with this meaning already exists');
+      }
+    }
+    return false;
+  }, [addValue, word]);
+  const wordWithMeaningAlert = useCallback(() => {
+    Alert.alert('Error', 'A word with this meaning already exists');
+  }, []);
+
+  const alertExistWord = useCallback(
+    existWord => {
+      Alert.alert(
+        'This word already exists',
+        'Do you wanna add another value?',
+        [
+          {
+            text: 'Yes',
+            style: 'default',
+            onPress: () => {
+              updateWord(
+                existWord.id,
+                existWord.label,
+                [...existWord.value, ...addValue],
+                existWord.type,
+              );
+              handelClearInputs();
+            },
+          },
+          {
+            text: 'No',
+            style: 'default',
+          },
+        ],
+      );
+    },
+    [addValue, handelClearInputs, updateWord],
+  );
+
+  const handlerAddWord = useCallback(() => {
+    if (addLabel && addType && addValue.length) {
+      if (word) {
+        if (isValue) {
+          wordWithMeaningAlert();
         } else {
-          Alert.alert(
-            'This word already exists',
-            'Do you wanna add another value?',
-            [
-              {
-                text: 'Yes',
-                style: 'default',
-                onPress: () => {
-                  console.log(word);
-                  updateWord(
-                    word.id,
-                    word.label,
-                    [...word.value, ...addValue],
-                    word.type,
-                  );
-                  handelClearInputs();
-                },
-              },
-              {
-                text: 'No',
-                style: 'default',
-              },
-            ],
-          );
+          alertExistWord(word);
         }
       } else {
         addWord({
@@ -92,7 +113,18 @@ export const useController = () => {
     } else {
       Alert.alert('Error', 'Fill in all the fields');
     }
-  };
+  }, [
+    addLabel,
+    addType,
+    addValue,
+    addWord,
+    alertExistWord,
+    handelClearInputs,
+    isValue,
+    word,
+    wordWithMeaningAlert,
+  ]);
+
   return {
     label,
     value,

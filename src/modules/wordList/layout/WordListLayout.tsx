@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import WordList from '../components/wordList/wordList';
 import Screen from '../../core/component/screen/Screen';
 
@@ -10,4 +10,4 @@ const WordListLayout = () => {
   );
 };
 
-export default WordListLayout;
+export default memo(WordListLayout);

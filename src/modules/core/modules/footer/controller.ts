@@ -17,6 +17,7 @@ export function useController() {
       hideSubscription.remove();
     };
   }, []);
+
   return {
     isKeyboardShow,
   };

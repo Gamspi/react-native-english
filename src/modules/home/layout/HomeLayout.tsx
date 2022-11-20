@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Text, View} from 'react-native';
 import {Colors} from '../../core/styles/variables';
 
@@ -19,4 +19,4 @@ const HomeLayout = () => {
   );
 };
 
-export default HomeLayout;
+export default memo(HomeLayout);

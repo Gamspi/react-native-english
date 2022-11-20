@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {StiledInput, StiledLabel} from './styled';
 import {Colors} from '../../../core/styles/variables';
 import {Animated, TextInput} from 'react-native';
@@ -12,4 +12,4 @@ const Input = ({label, ...props}: ComponentProps<TextInput> & Props) => (
     <StiledInput {...props} placeholderTextColor={Colors.LIGHT_DARK} />
   </>
 );
-export default Input;
+export default memo(Input);
