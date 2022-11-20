@@ -11,6 +11,7 @@ type Props = {
 
 const WordItem = ({item: {value, label, type, id}, ...props}: Props) => {
   const {handelDeleteWord} = useController();
+
   return (
     <StyledWordItem {...props}>
       <Text>{label}</Text>
