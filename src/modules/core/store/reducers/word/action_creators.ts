@@ -1,6 +1,7 @@
-import {WordActionEnum, setWordListAction, setWordAction, Word} from './types';
+import {WordActionEnum, setWordListAction, setWordAction} from './types';
 import {appDispatch} from '../../store';
 import {WordBaseData} from '../../../utils/wordBaseData';
+import {Word} from '../../../types/word';
 
 const bd = new WordBaseData();
 export const WordActionCreators = {
