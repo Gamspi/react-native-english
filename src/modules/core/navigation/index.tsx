@@ -25,6 +25,7 @@ export default function Navigation({navigationRef}: Props) {
             component={Home}
             options={{
               headerShown: false,
+              presentation: 'transparentModal',
             }}
           />
           <Screen
@@ -32,6 +33,7 @@ export default function Navigation({navigationRef}: Props) {
             component={AddWord}
             options={{
               headerShown: false,
+              presentation: 'transparentModal',
             }}
           />
           <Screen
@@ -39,6 +41,7 @@ export default function Navigation({navigationRef}: Props) {
             component={WordListScreen}
             options={{
               headerShown: false,
+              presentation: 'transparentModal',
             }}
           />
           <Screen
@@ -46,6 +49,7 @@ export default function Navigation({navigationRef}: Props) {
             component={Test}
             options={{
               headerShown: false,
+              presentation: 'transparentModal',
             }}
           />
         </Navigator>
