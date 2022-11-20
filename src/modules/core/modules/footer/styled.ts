@@ -8,6 +8,7 @@ export const FooterContainer = styled.View`
   justify-content: center;
   background: ${Colors.DARK};
   width: 100%;
+  border: 1px solid red;
 `;
 
 export const ButtonContainer = styled.View`

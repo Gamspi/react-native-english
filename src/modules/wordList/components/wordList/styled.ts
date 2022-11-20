@@ -3,5 +3,6 @@ import {Colors} from '../../../core/styles/variables';
 
 export const WordListContainer = styled.FlatList`
   background: ${Colors.DARK};
-  padding: 10px;
+  max-height: 100%;
+  padding: 0 0 20px 0;
 `;

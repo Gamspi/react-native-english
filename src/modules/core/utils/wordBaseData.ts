@@ -48,6 +48,20 @@ export class WordBaseData {
       );
     });
   }
+  async delete(id) {
+    await this.db.transaction(txn => {
+      txn.executeSql(
+        `DELETE FROM Words WHERE id=${id}`,
+        [],
+        () => {
+          console.log('added successfully');
+        },
+        error => {
+          console.log('error on adding category ' + error.message);
+        },
+      );
+    });
+  }
 
   async get(resolve: (result: Word[]) => void) {
     await this.db.transaction(txn => {

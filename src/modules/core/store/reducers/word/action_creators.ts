@@ -23,4 +23,9 @@ export const WordActionCreators = {
     await bd.add(word);
     await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
   },
+
+  deleteWord: (id: string) => async (dispatch: appDispatch) => {
+    await bd.delete(id);
+    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
+  },
 };

@@ -1,16 +1,27 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {Word} from '../../../core/store/reducers/word/types';
+import {StyledWordItem} from './styled';
+import {useController} from './controller';
+
 type Props = {
   item: Word;
+  isLast?: boolean;
 };
-const WordItem = ({item: {value, label, type}}: Props) => {
+
+const WordItem = ({item: {value, label, type, id}, ...props}: Props) => {
+  const {handelDeleteWord} = useController();
   return (
-    <View style={{borderColor: 'red', borderWidth: 1}}>
+    <StyledWordItem {...props}>
       <Text>{label}</Text>
-      <Text>{value}</Text>
+      {value.map((elem, index) => (
+        <Text key={elem + index}>{elem}</Text>
+      ))}
       <Text>{type}</Text>
-    </View>
+      <TouchableOpacity onPress={() => handelDeleteWord(id)}>
+        <Text>delete</Text>
+      </TouchableOpacity>
+    </StyledWordItem>
   );
 };
 
