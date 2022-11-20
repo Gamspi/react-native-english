@@ -24,6 +24,9 @@ const Footer = ({navigate}: Props) => {
           onPress={() => navigate(NavigationEnum.WORD_LIST)}
         />
       </ButtonContainer>
+      <ButtonContainer>
+        <Button title={'test'} onPress={() => navigate(NavigationEnum.TEST)} />
+      </ButtonContainer>
     </FooterContainer>
   );
 };

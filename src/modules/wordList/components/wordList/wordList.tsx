@@ -1,18 +1,20 @@
-import {useTypeSelector} from '../../../core/hooks/useTypeSelector';
-import {Text} from 'react-native';
 import React from 'react';
+import {RefreshControl, Text} from 'react-native';
 import {WordListContainer} from './styled';
 import WordItem from '../wordItem/WordItem';
+import {useController} from './controller';
 
 const WordList = () => {
-  const {words} = useTypeSelector(state => state.word);
-  return words.length ? (
+  const {words, isRefreshingList, onRefresh} = useController();
+
+  return (
     <WordListContainer
       data={words}
       renderItem={({item}) => <WordItem item={item} />}
+      refreshControl={
+        <RefreshControl refreshing={isRefreshingList} onRefresh={onRefresh} />
+      }
     />
-  ) : (
-    <Text> not find</Text>
   );
 };
 
