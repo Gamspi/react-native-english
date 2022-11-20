@@ -1,9 +1,4 @@
-export type Word = {
-  id: string;
-  label: string;
-  value: string[];
-  type: string;
-};
+import {Word} from '../../../types/word';
 
 export type BaseWord = Omit<Word, 'value'> & {
   value: string;
