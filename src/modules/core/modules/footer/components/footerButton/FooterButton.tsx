@@ -9,7 +9,7 @@ import {
 import {Animated, Image, TouchableOpacity} from 'react-native';
 import ComponentProps = Animated.ComponentProps;
 
-type Props = {
+export type Props = {
   title?: string;
   isActive?: boolean;
 };

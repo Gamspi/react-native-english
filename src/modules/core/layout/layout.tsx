@@ -9,18 +9,28 @@ import {useNavigationContainerRef} from '@react-navigation/native';
 import {useAction} from '../hooks/useActions';
 const CoreLayout = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [CurrenRoute, setCurrentRoute] = useState<string | undefined>(
+    undefined,
+  );
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const {initBaseData} = useAction();
+  const navigationRef = useNavigationContainerRef();
+
   useEffect(() => {
-    // initBaseData();
-  }, []);
+    setCurrentRoute(navigationRef.getCurrentRoute()?.name);
+    const listener = navigationRef.addListener('state', () => {
+      setCurrentRoute(navigationRef.getCurrentRoute()?.name);
+    });
+    return navigationRef.removeListener('state', listener);
+  }, [navigationRef]);
+
   useEffect(() => {
     initBaseData();
     SplashScreen.hide();
   }, []);
-  const navigationRef = useNavigationContainerRef();
+
   return (
     <>
       <StatusBar
@@ -29,7 +39,9 @@ const CoreLayout = () => {
       />
       <Header />
       <Navigation navigationRef={navigationRef} />
-      <Footer navigate={navigationRef.navigate} />
+      {CurrenRoute && (
+        <Footer navigate={navigationRef.navigate} currentRouter={CurrenRoute} />
+      )}
     </>
   );
 };
