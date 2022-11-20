@@ -10,7 +10,7 @@ export function useController() {
         onPress: () => {
           deleteWord(id);
         },
-        style: 'cancel',
+        style: 'default',
       },
       {
         text: 'Cancel',
