@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, Animated} from 'react-native';
+import {TouchableOpacity, Text, Animated, Image} from 'react-native';
 import ComponentProps = Animated.ComponentProps;
 import {StyledButtonContainer} from './styled';
 type Props = {
