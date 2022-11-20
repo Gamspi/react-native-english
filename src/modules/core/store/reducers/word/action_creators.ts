@@ -16,13 +16,11 @@ export const WordActionCreators = {
 
   initBaseData: () => async (dispatch: appDispatch) => {
     await bd.init();
-    // await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
+    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
   },
 
   addWord: (word: Omit<Word, 'id'>) => async (dispatch: appDispatch) => {
     await bd.add(word);
-    await bd.get(result => {
-      dispatch(WordActionCreators.setWordList(result));
-    });
+    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
   },
 };

@@ -36,11 +36,15 @@ export const useController = () => {
     const addType = valueTransformation(type);
     if (addLabel && addType && addValue.length) {
       const word = words.find(
-        elem => elem.label.toLowerCase() === label.toLowerCase().trim(),
+        elem =>
+          elem.label.toLowerCase() === label.toLowerCase().trim() &&
+          elem.type === type.toLowerCase(),
       );
       if (word) {
-        console.log(word);
-        handelClearInputs();
+        Alert.alert(
+          'This word already exists',
+          'Do you wanna add another value?',
+        );
       } else {
         addWord({
           label: addLabel,
