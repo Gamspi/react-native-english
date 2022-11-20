@@ -21,7 +21,7 @@ const AddWordForm = () => {
       <Input
         placeholder="Word"
         value={label}
-        onChangeText={setLabel}
+        onChangeText={e => setLabel(e.replace(/([^a-z \s])|(\s(?=\s))/gi, ''))}
         label="Word"
       />
       <Input
