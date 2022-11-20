@@ -3,8 +3,8 @@ import {Colors} from '../../../core/styles/variables';
 
 export const StyledWordItem = styled.View`
   border: 1px solid red;
-  border-radius: 20px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 14px;
   ${({isLast}) =>
     !isLast &&
     css`

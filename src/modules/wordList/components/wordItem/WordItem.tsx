@@ -24,7 +24,9 @@ const WordItem = ({item: {value, label, type, id}, ...props}: Props) => {
         handelDeleteWord(id);
       }}>
       <StyledWordItem {...props}>
-        <StyledWordItemTitle>{label}</StyledWordItemTitle>
+        <StyledWordItemTitle>
+          {label[0].toUpperCase() + label.slice(1)}
+        </StyledWordItemTitle>
         <Text>{type}</Text>
         {isActive && (
           <StyledWordItemValueContainer>
