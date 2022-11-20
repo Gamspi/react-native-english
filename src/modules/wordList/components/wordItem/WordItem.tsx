@@ -1,7 +1,12 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {Word} from '../../../core/store/reducers/word/types';
-import {StyledWordItem} from './styled';
+import {
+  StyledWordItem,
+  StyledWordItemTitle,
+  StyledWordItemValue,
+  StyledWordItemValueContainer,
+} from './styled';
 import {useController} from './controller';
 
 type Props = {
@@ -10,19 +15,24 @@ type Props = {
 };
 
 const WordItem = ({item: {value, label, type, id}, ...props}: Props) => {
-  const {handelDeleteWord} = useController();
+  const {isActive, handelDeleteWord, toggleIsActive} = useController();
 
   return (
-    <StyledWordItem {...props}>
-      <Text>{label}</Text>
-      {value.map((elem, index) => (
-        <Text key={elem + index}>{elem}</Text>
-      ))}
-      <Text>{type}</Text>
-      <TouchableOpacity onPress={() => handelDeleteWord(id)}>
-        <Text>delete</Text>
-      </TouchableOpacity>
-    </StyledWordItem>
+    <TouchableOpacity
+      onPress={toggleIsActive}
+      onLongPress={() => {
+        handelDeleteWord(id);
+      }}>
+      <StyledWordItem {...props}>
+        <StyledWordItemTitle>{label}</StyledWordItemTitle>
+        <Text>{type}</Text>
+        {isActive && (
+          <StyledWordItemValueContainer>
+            <StyledWordItemValue>{value.join(', ')}</StyledWordItemValue>
+          </StyledWordItemValueContainer>
+        )}
+      </StyledWordItem>
+    </TouchableOpacity>
   );
 };
 
