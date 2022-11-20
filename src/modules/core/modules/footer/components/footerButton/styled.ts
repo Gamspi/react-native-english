@@ -5,7 +5,7 @@ export const StyledFooterButton = styled.View`
   align-items: center;
 `;
 
-export const StyledFooterButtonImageContainer = styled.TouchableOpacity<Props>`
+export const StyledFooterButtonImageContainer = styled.View<Props>`
   width: 50px;
   height: 50px;
   border: 1px solid white;
