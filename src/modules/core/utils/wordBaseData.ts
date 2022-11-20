@@ -1,5 +1,5 @@
 import SQLite from 'react-native-sqlite-storage';
-import {Word} from '../store/reducers/word/types';
+import {BaseWord, Word} from '../store/reducers/word/types';
 
 export class WordBaseData {
   private db: any;
@@ -21,7 +21,7 @@ export class WordBaseData {
     this.db.transaction(tx => {
       tx.executeSql(
         // 'DROP TABLE Words',
-        'CREATE TABLE IF NOT EXISTS Words (id INTEGER PRIMARY KEY AUTOINCREMENT, label VARCHAR(30), value VARCHAR(30),type VARCHAR(30))',
+        'CREATE TABLE IF NOT EXISTS Words (id INTEGER PRIMARY KEY AUTOINCREMENT, label VARCHAR(30), value VARCHAR(200),type VARCHAR(30))',
         [],
         () => {
           console.log('created');
@@ -34,10 +34,11 @@ export class WordBaseData {
   };
 
   async add({label, value, type}) {
+    const stringValue = JSON.stringify(value);
     await this.db.transaction(txn => {
       txn.executeSql(
         'INSERT INTO Words (label, value, type) VALUES (?, ?, ?)',
-        [label, value, type],
+        [label, stringValue, type],
         () => {
           console.log('added successfully');
         },
@@ -59,8 +60,13 @@ export class WordBaseData {
           let len = res.rows.length;
           if (len > 0) {
             for (let i = 0; i < len; i++) {
-              let item = res.rows.item(i) as Word;
-              results.push(item);
+              let {id, type, value, label} = res.rows.item(i) as BaseWord;
+              results.push({
+                id,
+                label,
+                type,
+                value: JSON.parse(value),
+              });
             }
           }
           resolve(results);

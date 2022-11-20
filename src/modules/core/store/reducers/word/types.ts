@@ -1,8 +1,12 @@
 export type Word = {
   id: string;
   label: string;
-  value: string;
+  value: string[];
   type: string;
+};
+
+export type BaseWord = Omit<Word, 'value'> & {
+  value: string;
 };
 
 export type cardsState = {
