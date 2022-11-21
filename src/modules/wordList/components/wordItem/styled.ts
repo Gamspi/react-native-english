@@ -16,10 +16,25 @@ export const StyledWordItemTitle = styled.Text`
   color: ${Colors.WHITE};
   font-size: 30px;
 `;
+
 export const StyledWordItemValue = styled.Text`
   color: ${Colors.WHITE};
   font-size: 20px;
 `;
+
 export const StyledWordItemValueContainer = styled.View`
+  flex-direction: row;
+`;
+
+export const StyledWordItemSwitchContainer = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const StyledWordItemSwitchText = styled.Text`
+  margin-right: 10px;
+  color: ${Colors.WHITE};
+  opacity: ${({isInGame}) => (isInGame ? 1 : 0.7)};
   flex-direction: row;
 `;

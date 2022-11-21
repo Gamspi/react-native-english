@@ -64,12 +64,12 @@ export class WordBaseData {
     });
   }
 
-  async upDate(id, label, value, type) {
+  async upDate({id, label, value, type, isInGame}: Word) {
     const stringValue = JSON.stringify(value);
     await this.db.transaction(txn => {
       txn.executeSql(
-        `UPDATE Words SET value=?, label=?, type=? WHERE id=${id}`,
-        [stringValue, label, type],
+        `UPDATE Words SET value=?, label=?, type=? , isInGame=? WHERE id=${id}`,
+        [stringValue, label, type, isInGame],
         () => {
           console.log('update successfully');
         },

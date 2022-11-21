@@ -1,4 +1,9 @@
-import {WordActionEnum, setWordListAction, setWordAction} from './types';
+import {
+  WordActionEnum,
+  setWordListAction,
+  setWordAction,
+  deleteWordAction,
+} from './types';
 import {appDispatch} from '../../store';
 import {WordBaseData} from '../../../utils/wordBaseData';
 import {Word} from '../../../types/word';
@@ -15,6 +20,11 @@ export const WordActionCreators = {
     payload,
   }),
 
+  removeWord: (id: string): deleteWordAction => ({
+    type: WordActionEnum.DELETE_WORD,
+    payload: id,
+  }),
+
   initBaseData: () => async (dispatch: appDispatch) => {
     await bd.init();
     await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
@@ -26,14 +36,24 @@ export const WordActionCreators = {
   },
 
   deleteWord: (id: string) => async (dispatch: appDispatch) => {
-    await bd.delete(id);
-    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
+    try {
+      await bd.delete(id);
+      dispatch(WordActionCreators.removeWord(id));
+    } catch (e) {
+      console.log(e);
+    }
   },
+
   update: () => async (dispatch: appDispatch) => {
     await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
   },
-  updateWord: (id, label, value, type) => async (dispatch: appDispatch) => {
-    await bd.upDate(id, label, value, type);
-    await bd.get(result => dispatch(WordActionCreators.setWordList(result)));
+
+  updateWord: (word: Word) => async (dispatch: appDispatch) => {
+    try {
+      await bd.upDate(word);
+      dispatch(WordActionCreators.setWord(word));
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
