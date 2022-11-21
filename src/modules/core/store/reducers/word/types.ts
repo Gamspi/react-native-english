@@ -5,7 +5,7 @@ export type BaseWord = Omit<Word, 'value' | 'isInGame'> & {
   isInGame: number;
 };
 
-export type cardsState = {
+export type wordsState = {
   words: Word[];
 };
 
