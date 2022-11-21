@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Alert, BackHandler, View, Text} from 'react-native';
-import Screen from '../core/component/screen/Screen';
 
 const TestPage = () => {
   useEffect(() => {
