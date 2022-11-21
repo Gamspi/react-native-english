@@ -1,23 +1,16 @@
-import React, {memo, useEffect} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {Colors} from '../../core/styles/variables';
+import React, {memo} from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 import {useController} from './controller';
+import Screen from '../../core/component/screen/Screen';
 
 type Props = {
   checkIsFocused: () => boolean;
 };
 const HomeLayout = ({checkIsFocused}: Props) => {
-  const h = () => {
-    console.log(checkIsFocused());
-  };
   useController({checkIsFocused});
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.DARK,
-      }}>
-      <TouchableOpacity onPress={h}>
+    <Screen>
+      <TouchableOpacity>
         <Text
           style={{
             color: 'red',
@@ -25,7 +18,7 @@ const HomeLayout = ({checkIsFocused}: Props) => {
           Hello home
         </Text>
       </TouchableOpacity>
-    </View>
+    </Screen>
   );
 };
 

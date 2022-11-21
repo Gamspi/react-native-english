@@ -3,9 +3,12 @@ import {RefreshControl} from 'react-native';
 import {WordListContainer} from './styled';
 import WordItem from '../wordItem/WordItem';
 import {useController} from './controller';
-
-const WordList = () => {
-  const {words, isRefreshingList, onRefresh} = useController();
+import {Word} from '../../../core/types/word';
+type Props = {
+  words: Word[];
+};
+const WordList = ({words}: Props) => {
+  const {isRefreshingList, onRefresh} = useController();
 
   return (
     <WordListContainer
