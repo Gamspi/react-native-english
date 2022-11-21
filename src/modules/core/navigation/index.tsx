@@ -9,6 +9,7 @@ import AddWord from '../../addWord/AddWord';
 import WordListScreen from '../../wordList/WordListScreen';
 import {NavigationEnum} from '../utils/enums/navigation';
 import Test from '../../test/test';
+import Game from '../../game';
 
 const {Screen, Navigator} = createStackNavigator();
 
@@ -49,6 +50,13 @@ export default function Navigation({navigationRef}: Props) {
             component={Test}
             options={{
               headerShown: false,
+              presentation: 'transparentModal',
+            }}
+          />
+          <Screen
+            name={NavigationEnum.GAME}
+            component={Game}
+            options={{
               presentation: 'transparentModal',
             }}
           />

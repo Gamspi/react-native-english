@@ -9,7 +9,8 @@ type Props = {
 };
 const Footer = ({navigate, currentRouter}: Props) => {
   const {isKeyboardShow} = useController();
-  return !isKeyboardShow ? (
+  return !isKeyboardShow &&
+    !(currentRouter === (NavigationEnum.GAME as string)) ? (
     <FooterContainer>
       <ButtonContainer>
         <FooterButton

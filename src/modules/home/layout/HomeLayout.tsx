@@ -1,23 +1,19 @@
 import React, {memo} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
 import {useController} from './controller';
 import Screen from '../../core/component/screen/Screen';
+import StartButton from '../components/startButton/startButton';
+import {StyledHomeContainer} from './styled';
 
 type Props = {
   checkIsFocused: () => boolean;
 };
 const HomeLayout = ({checkIsFocused}: Props) => {
-  useController({checkIsFocused});
+  const {handelStartGame} = useController({checkIsFocused});
   return (
     <Screen>
-      <TouchableOpacity>
-        <Text
-          style={{
-            color: 'red',
-          }}>
-          Hello home
-        </Text>
-      </TouchableOpacity>
+      <StyledHomeContainer>
+        <StartButton onPress={handelStartGame}>Start</StartButton>
+      </StyledHomeContainer>
     </Screen>
   );
 };

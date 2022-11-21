@@ -3,4 +3,5 @@ export enum NavigationEnum {
   ADD_WORD = 'addWord',
   WORD_LIST = 'wordList',
   TEST = 'test',
+  GAME = 'game',
 }
