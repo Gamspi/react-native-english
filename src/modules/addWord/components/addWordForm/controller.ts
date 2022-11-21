@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import {useCallback, useMemo, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {useAction} from '../../../core/hooks/useActions';
 import {typeTab} from '../../constants/constants';
 import {useTypeSelector} from '../../../core/hooks/useTypeSelector';
@@ -7,8 +7,14 @@ import {
   arrayValueTransformation,
   valueTransformation,
 } from '../../../core/utils/helpers/valueTransformation';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationEnum} from '../../../core/utils/enums/navigation';
 
 export const useController = () => {
+  const navigate = useNavigation<any>(); //TODO add type
+  const [updateId, setUpdateId] = useState('');
+  const [isChangeWord, setIsChangeWord] = useState(false);
+
   const {addWord, updateWord} = useAction();
   const {words} = useTypeSelector(state => state.word);
 
@@ -19,6 +25,32 @@ export const useController = () => {
   const [activeCheckboxId, setActiveCheckboxId] = useState(
     typeTab.length ? typeTab[0].id : 1,
   );
+
+  useEffect(() => {
+    const route = navigate
+      .getState()
+      .routes.find(elem => elem.name === NavigationEnum.ADD_WORD);
+    if (route && route.params) {
+      const {id} = route.params;
+      if (id) {
+        setUpdateId(id);
+      }
+    }
+  }, [navigate]);
+  useEffect(() => {
+    if (updateId) {
+      const changeWord = words.find(elem => elem.id === updateId);
+      if (changeWord) {
+        setIsChangeWord(true);
+        setLabel(changeWord.label);
+        setValue(changeWord.value.join(', '));
+        setIsInGame(changeWord.isInGame);
+        setType(changeWord.type);
+        setActiveCheckboxId(changeWord.type);
+      }
+    }
+  }, [updateId, words]);
+
   const handlerEnglishOnInput = useCallback(
     e => setLabel(e.replace(/([^a-z\s'])|(\s(?=\s))|('(?='))/gi, '')),
     [],
@@ -102,20 +134,31 @@ export const useController = () => {
 
   const handlerAddWord = useCallback(() => {
     if (addLabel && addType && addValue.length) {
-      if (word) {
-        if (isValue) {
-          wordWithMeaningAlert();
-        } else {
-          alertExistWord(word);
-        }
-      } else {
-        addWord({
+      if (isChangeWord) {
+        updateWord({
+          id: updateId,
           label: addLabel,
           value: addValue,
           type: addType,
           isInGame,
         });
-        handelClearInputs();
+        navigate.goBack();
+      } else {
+        if (word) {
+          if (isValue) {
+            wordWithMeaningAlert();
+          } else {
+            alertExistWord(word);
+          }
+        } else {
+          addWord({
+            label: addLabel,
+            value: addValue,
+            type: addType,
+            isInGame,
+          });
+          handelClearInputs();
+        }
       }
     } else {
       Alert.alert('Error', 'Fill in all the fields');
@@ -127,8 +170,12 @@ export const useController = () => {
     addWord,
     alertExistWord,
     handelClearInputs,
+    isChangeWord,
     isInGame,
     isValue,
+    navigate,
+    updateId,
+    updateWord,
     word,
     wordWithMeaningAlert,
   ]);

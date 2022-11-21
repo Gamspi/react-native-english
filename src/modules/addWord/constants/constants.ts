@@ -1,10 +1,10 @@
 export const typeTab = [
   {
-    id: 1,
-    valueType: 'Noun',
+    id: 'noun',
+    valueType: 'noun',
   },
   {
-    id: 2,
-    valueType: 'Verb',
+    id: 'verb',
+    valueType: 'verb',
   },
 ];
