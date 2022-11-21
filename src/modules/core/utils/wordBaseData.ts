@@ -1,5 +1,6 @@
 import SQLite from 'react-native-sqlite-storage';
-import {BaseWord, Word} from '../store/reducers/word/types';
+import {BaseWord} from '../store/reducers/word/types';
+import {Word} from '../types/word';
 
 export class WordBaseData {
   private db: any;
@@ -21,7 +22,7 @@ export class WordBaseData {
     this.db.transaction(tx => {
       tx.executeSql(
         // 'DROP TABLE Words',
-        'CREATE TABLE IF NOT EXISTS Words (id INTEGER PRIMARY KEY AUTOINCREMENT, label VARCHAR(30), value VARCHAR(200),type VARCHAR(30))',
+        'CREATE TABLE IF NOT EXISTS Words (id INTEGER PRIMARY KEY AUTOINCREMENT, label VARCHAR(30), value VARCHAR(200), type VARCHAR(30), isInGame NUMERIC(1))',
         [],
         () => {
           console.log('created');
@@ -33,12 +34,12 @@ export class WordBaseData {
     });
   };
 
-  async add({label, value, type}) {
+  async add({label, value, type, isInGame}: Omit<Word, 'id'>) {
     const stringValue = JSON.stringify(value);
     await this.db.transaction(txn => {
       txn.executeSql(
-        'INSERT INTO Words (label, value, type) VALUES (?, ?, ?)',
-        [label, stringValue, type],
+        'INSERT INTO Words (label, value, type, isInGame) VALUES (?, ?, ?, ?)',
+        [label, stringValue, type, isInGame],
         () => {
           console.log('added successfully');
         },
@@ -90,15 +91,19 @@ export class WordBaseData {
           let len = res.rows.length;
           if (len > 0) {
             for (let i = 0; i < len; i++) {
-              let {id, type, value, label} = res.rows.item(i) as BaseWord;
+              let {id, type, value, label, isInGame} = res.rows.item(
+                i,
+              ) as BaseWord;
               results.push({
                 id,
                 label,
                 type,
                 value: JSON.parse(value),
+                isInGame: !!isInGame,
               });
             }
           }
+          console.log(results);
           resolve(results);
         },
         error => {

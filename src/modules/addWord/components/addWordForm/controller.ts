@@ -14,6 +14,7 @@ export const useController = () => {
 
   const [label, setLabel] = useState('');
   const [value, setValue] = useState('');
+  const [isInGame, setIsInGame] = useState(true);
   const [type, setType] = useState(typeTab.length ? typeTab[0].valueType : '');
   const [activeCheckboxId, setActiveCheckboxId] = useState(
     typeTab.length ? typeTab[0].id : 1,
@@ -22,6 +23,9 @@ export const useController = () => {
     e => setLabel(e.replace(/([^a-z\s'])|(\s(?=\s))|('(?='))/gi, '')),
     [],
   );
+  const handelSetIsInGame = useCallback(() => {
+    setIsInGame(!isInGame);
+  }, [isInGame]);
 
   const handlerChooserType = useCallback(
     ({valueType, id}: typeof typeTab[0]) => {
@@ -111,6 +115,7 @@ export const useController = () => {
           label: addLabel,
           value: addValue,
           type: addType,
+          isInGame,
         });
         handelClearInputs();
       }
@@ -124,12 +129,15 @@ export const useController = () => {
     addWord,
     alertExistWord,
     handelClearInputs,
+    isInGame,
     isValue,
     word,
     wordWithMeaningAlert,
   ]);
 
   return {
+    handelSetIsInGame,
+    isInGame,
     label,
     value,
     activeCheckboxId,

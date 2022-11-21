@@ -1,10 +1,15 @@
 import React, {memo} from 'react';
 import {Button} from 'react-native';
 import Input from '../Input/input';
-import {StyledAddWordForm} from './stiled';
+import {
+  StyledAddWordForm,
+  StyledAddWordSwitch,
+  StyledAddWordSwitchText,
+} from './stiled';
 import {useController} from './controller';
 import Checkbox from '../../../core/component/checkbox/Checkbox';
 import {typeTab} from '../../constants/constants';
+import MySwitch from '../../../core/component/mySwitch/MySwitch';
 
 const AddWordForm = () => {
   const {
@@ -15,9 +20,18 @@ const AddWordForm = () => {
     handlerEnglishOnInput,
     setValue,
     handlerChooserType,
+    isInGame,
+    handelSetIsInGame,
   } = useController();
   return (
     <StyledAddWordForm>
+      <StyledAddWordSwitch>
+        <StyledAddWordSwitchText isInGame={isInGame}>
+          {isInGame ? 'In the Game' : 'Not in the Game'}
+        </StyledAddWordSwitchText>
+        <MySwitch callBack={handelSetIsInGame} value={isInGame} />
+      </StyledAddWordSwitch>
+
       <Input
         placeholder="Word"
         value={label}

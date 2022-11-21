@@ -1,7 +1,8 @@
 import {Word} from '../../../types/word';
 
-export type BaseWord = Omit<Word, 'value'> & {
+export type BaseWord = Omit<Word, 'value' | 'isInGame'> & {
   value: string;
+  isInGame: number;
 };
 
 export type cardsState = {

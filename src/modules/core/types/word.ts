@@ -3,4 +3,5 @@ export type Word = {
   label: string;
   value: string[];
   type: string;
+  isInGame: boolean;
 };
