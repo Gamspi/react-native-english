@@ -83,12 +83,10 @@ export const useController = () => {
             text: 'Yes',
             style: 'default',
             onPress: () => {
-              updateWord(
-                existWord.id,
-                existWord.label,
-                [...existWord.value, ...addValue],
-                existWord.type,
-              );
+              updateWord({
+                ...existWord,
+                value: [...existWord.value, ...addValue],
+              });
               handelClearInputs();
             },
           },
