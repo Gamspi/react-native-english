@@ -6,6 +6,7 @@ export const StyledGamePage = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
 export const StyledGameUpdateButton = styled.Button`
   margin-left: auto;
 `;

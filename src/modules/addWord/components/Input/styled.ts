@@ -1,16 +1,22 @@
 import styled from 'styled-components/native';
-import {Colors} from '../../../core/styles/variables';
+import {Backgrounds, Colors} from '../../../core/styles/variables';
+import {StyleSheet} from 'react-native';
 
 export const StiledInput = styled.TextInput`
-  border-style: solid;
-  background: ${Colors.WHITE};
-  color: ${Colors.BLACK};
-  border-radius: 8px;
+  border: 1px solid ${Backgrounds.THIRD_BLACK};
+  border-radius: 10px;
+  color: ${Colors.WHITE};
   padding: 10px;
-  margin-bottom: 32px;
 `;
 
 export const StiledLabel = styled.Text`
   color: ${Colors.WHITE};
   padding-bottom: 10px;
 `;
+
+export const input = StyleSheet.create({
+  gradient: {
+    borderRadius: 10,
+    marginBottom: 32,
+  },
+});

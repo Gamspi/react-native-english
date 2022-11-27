@@ -1,5 +1,4 @@
 import React, {memo} from 'react';
-import {Button} from 'react-native';
 import Input from '../Input/input';
 import {
   StyledAddWordForm,
@@ -10,6 +9,7 @@ import {useController} from './controller';
 import Checkbox from '../../../core/component/checkbox/Checkbox';
 import {typeTab} from '../../constants/constants';
 import MySwitch from '../../../core/component/mySwitch/MySwitch';
+import Button from '../../../core/component/button/Button';
 
 const AddWordForm = () => {
   const {

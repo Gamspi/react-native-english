@@ -37,7 +37,7 @@ const CoreLayout = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Header />
+      {/*<Header />*/}
       <Navigation navigationRef={navigationRef} />
       {CurrenRoute && (
         <Footer navigate={navigationRef.navigate} currentRouter={CurrenRoute} />

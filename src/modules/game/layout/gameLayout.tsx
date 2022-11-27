@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button} from 'react-native';
 import Screen from '../../core/component/screen/Screen';
 import {useController} from './controller';
 import Input from '../../addWord/components/Input/input';
-import {StyledGamePage, StyledGameUpdateButton, StyledGameWord} from './styled';
+import {StyledGamePage, StyledGameWord} from './styled';
+import Button from '../../core/component/button/Button';
+import {View} from 'react-native';
 
 const GameLayout = () => {
   const {
@@ -19,11 +20,7 @@ const GameLayout = () => {
   return (
     <Screen>
       <StyledGamePage>
-        <StyledGameUpdateButton
-          title="update"
-          onPress={updateWord}
-          disabled={isDisabled}
-        />
+        <Button title="update" onPress={updateWord} disabled={isDisabled} />
         {word && (
           <StyledGameWord isSuccess={isSuccess} isError={isError}>
             {word.value}
@@ -36,7 +33,17 @@ const GameLayout = () => {
             minWidth: 200,
           }}
         />
-        <Button title="submit" onPress={handelSubmit} disabled={isDisabled} />
+        <View
+          style={{
+            flexDirection: 'row',
+          }}>
+          <Button title="SUBMIT" onPress={handelSubmit} disabled={isDisabled} />
+          <Button
+            title="I DON'T KNOW"
+            onPress={handelSubmit}
+            disabled={isDisabled}
+          />
+        </View>
       </StyledGamePage>
     </Screen>
   );
