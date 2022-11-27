@@ -1,9 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, Text, Animated} from 'react-native';
+import {TouchableOpacity, Animated} from 'react-native';
 import ComponentProps = Animated.ComponentProps;
 import LinearGradient from 'react-native-linear-gradient';
 import {Backgrounds} from '../../styles/variables';
-import {button, ButtonContainer} from './styled';
+import {button, ButtonContainer, ButtonText} from './styled';
 import {shadows} from '../../styles/shadows';
 
 type Props = {
@@ -19,7 +19,7 @@ const Button = ({title, onPress}: Props & ComponentProps<TouchableOpacity>) => {
           locations={[0, 0.6]}
           colors={[Backgrounds.PRIMARY_RED, Backgrounds.SECONDARY_RED]}
           style={button.gradient}>
-          <Text>{title}</Text>
+          <ButtonText>{title}</ButtonText>
         </LinearGradient>
       </ButtonContainer>
     </TouchableOpacity>
