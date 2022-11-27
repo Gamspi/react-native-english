@@ -4,7 +4,6 @@ import {Colors} from '../../core/styles/variables';
 export const StyledGamePage = styled.View`
   flex: 1;
   justify-content: center;
-  align-items: center;
 `;
 
 export const StyledGameAnswer = styled.Text`
@@ -29,4 +28,8 @@ export const StyledGameWord = styled.Text`
       `;
     }
   }}
+`;
+
+export const StyledGameButtonContainer = styled.View`
+  gap: 10px;
 `;

@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Backgrounds, Colors} from '../../styles/variables';
 import styled from 'styled-components/native';
+import {Props} from './Button';
 
 export const button = StyleSheet.create({
   gradient: {
@@ -16,4 +17,8 @@ export const ButtonContainer = styled.View`
 
 export const ButtonText = styled.Text`
   color: ${Colors.WHITE};
+`;
+
+export const ButtonTouch = styled.TouchableOpacity<Props>`
+  margin: ${({margin}) => margin || 0};
 `;

@@ -2,7 +2,12 @@ import React from 'react';
 import Screen from '../../core/component/screen/Screen';
 import {useController} from './controller';
 import Input from '../../core/component/Input/input';
-import {StyledGameAnswer, StyledGamePage, StyledGameWord} from './styled';
+import {
+  StyledGameAnswer,
+  StyledGameButtonContainer,
+  StyledGamePage,
+  StyledGameWord,
+} from './styled';
 import Button from '../../core/component/button/Button';
 import {View} from 'react-native';
 
@@ -26,31 +31,23 @@ const GameLayout = () => {
         {word && (
           <>
             <StyledGameWord isSuccess={isSuccess} isError={isError}>
-              {word.value}
+              {word.value.join(', ')}
             </StyledGameWord>
             <StyledGameAnswer isShow={isShowAnswer}>
               {word.label}
             </StyledGameAnswer>
           </>
         )}
-        <Input
-          value={answer}
-          onChangeText={setAnswer}
-          style={{
-            minWidth: 200,
-          }}
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-          }}>
+        <Input value={answer} onChangeText={setAnswer} />
+        <StyledGameButtonContainer>
           <Button
             title="I DON'T KNOW"
             onPress={handelShowAnswer}
             disabled={isDisabled}
+            margin="0 0 15px 0"
           />
           <Button title="SUBMIT" onPress={handelSubmit} disabled={isDisabled} />
-        </View>
+        </StyledGameButtonContainer>
       </StyledGamePage>
     </Screen>
   );

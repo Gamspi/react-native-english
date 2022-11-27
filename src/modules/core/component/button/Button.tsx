@@ -3,15 +3,20 @@ import {TouchableOpacity, Animated} from 'react-native';
 import ComponentProps = Animated.ComponentProps;
 import LinearGradient from 'react-native-linear-gradient';
 import {Backgrounds} from '../../styles/variables';
-import {button, ButtonContainer, ButtonText} from './styled';
+import {button, ButtonContainer, ButtonText, ButtonTouch} from './styled';
 import {shadows} from '../../styles/shadows';
 
-type Props = {
+export type Props = {
   title: string;
+  margin?: string;
 };
-const Button = ({title, onPress}: Props & ComponentProps<TouchableOpacity>) => {
+const Button = ({
+  title,
+  onPress,
+  ...props
+}: Props & ComponentProps<TouchableOpacity>) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <ButtonTouch onPress={onPress} {...props}>
       <ButtonContainer style={shadows.button}>
         <LinearGradient
           start={{x: 0, y: 0}}
@@ -22,7 +27,7 @@ const Button = ({title, onPress}: Props & ComponentProps<TouchableOpacity>) => {
           <ButtonText>{title}</ButtonText>
         </LinearGradient>
       </ButtonContainer>
-    </TouchableOpacity>
+    </ButtonTouch>
   );
 };
 
