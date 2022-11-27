@@ -7,12 +7,14 @@ export const StyledGamePage = styled.View`
   align-items: center;
 `;
 
-export const StyledGameUpdateButton = styled.Button`
-  margin-left: auto;
+export const StyledGameAnswer = styled.Text`
+  text-align: center;
+  margin-bottom: 16px;
+  opacity: ${({isShow}) => (isShow ? '1' : '0')};
 `;
 
 export const StyledGameWord = styled.Text`
-  margin: 50px auto;
+  margin: 0 auto 10px;
   font-size: 30px;
   color: ${Colors.WHITE};
   ${({isError, isSuccess}) => {

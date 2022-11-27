@@ -2,29 +2,36 @@ import React from 'react';
 import Screen from '../../core/component/screen/Screen';
 import {useController} from './controller';
 import Input from '../../addWord/components/Input/input';
-import {StyledGamePage, StyledGameWord} from './styled';
+import {StyledGameAnswer, StyledGamePage, StyledGameWord} from './styled';
 import Button from '../../core/component/button/Button';
 import {View} from 'react-native';
 
 const GameLayout = () => {
   const {
-    handelSubmit,
     word,
     answer,
-    setAnswer,
-    updateWord,
     isSuccess,
     isError,
     isDisabled,
+    isShowAnswer,
+    setAnswer,
+    // updateWord,
+    handelSubmit,
+    handelShowAnswer,
   } = useController();
   return (
     <Screen>
       <StyledGamePage>
-        <Button title="update" onPress={updateWord} disabled={isDisabled} />
+        {/*<Button title="update" onPress={updateWord} disabled={isDisabled} />*/}
         {word && (
-          <StyledGameWord isSuccess={isSuccess} isError={isError}>
-            {word.value}
-          </StyledGameWord>
+          <>
+            <StyledGameWord isSuccess={isSuccess} isError={isError}>
+              {word.value}
+            </StyledGameWord>
+            <StyledGameAnswer isShow={isShowAnswer}>
+              {word.label}
+            </StyledGameAnswer>
+          </>
         )}
         <Input
           value={answer}
@@ -37,12 +44,12 @@ const GameLayout = () => {
           style={{
             flexDirection: 'row',
           }}>
-          <Button title="SUBMIT" onPress={handelSubmit} disabled={isDisabled} />
           <Button
             title="I DON'T KNOW"
-            onPress={handelSubmit}
+            onPress={handelShowAnswer}
             disabled={isDisabled}
           />
+          <Button title="SUBMIT" onPress={handelSubmit} disabled={isDisabled} />
         </View>
       </StyledGamePage>
     </Screen>
