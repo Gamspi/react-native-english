@@ -1,8 +1,8 @@
 import styled, {css} from 'styled-components/native';
-import {Colors} from '../../../core/styles/variables';
+import {Backgrounds, Colors} from '../../../core/styles/variables';
 
 export const StyledWordItem = styled.View`
-  border: 1px solid red;
+  border: 1px solid ${Backgrounds.PRIMARY_RED};
   border-radius: 16px;
   padding: 14px;
   ${({isLast}) =>
