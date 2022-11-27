@@ -7,4 +7,8 @@ export const typeTab = [
     id: 'verb',
     valueType: 'verb',
   },
+  {
+    id: 'adjective',
+    valueType: 'adjective',
+  },
 ];
