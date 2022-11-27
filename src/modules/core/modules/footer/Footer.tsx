@@ -3,6 +3,7 @@ import {ButtonContainer, FooterContainer} from './styled';
 import {NavigationEnum} from '../../utils/enums/navigation';
 import {useController} from './controller';
 import FooterButton from './components/footerButton/FooterButton';
+
 type Props = {
   navigate: (RouteName: NavigationEnum) => void;
   currentRouter: string;

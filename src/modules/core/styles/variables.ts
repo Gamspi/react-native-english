@@ -5,6 +5,7 @@ export enum Colors {
   WHITE = '#ffffff',
 }
 export enum Backgrounds {
+  WHITE = '#ffffff',
   BLACK = '#000',
   PRIMARY_BLACK = '#101113',
   SECONDARY_BLACK = '#272B2F',

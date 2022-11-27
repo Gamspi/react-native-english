@@ -23,4 +23,14 @@ export const shadows = StyleSheet.create({
     shadowRadius: 16.0,
     elevation: 15,
   },
+  circleButton: {
+    shadowColor: Backgrounds.WHITE,
+    shadowOffset: {
+      width: 100,
+      height: 100,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 16.0,
+    elevation: 24,
+  },
 });

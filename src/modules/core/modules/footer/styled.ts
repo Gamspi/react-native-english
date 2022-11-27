@@ -1,16 +1,13 @@
 import styled from 'styled-components/native';
-import {Colors} from '../../styles/variables';
+import {Backgrounds} from '../../styles/variables';
 
 export const FooterContainer = styled.View`
   padding: 10px;
   flex-direction: row;
-  //align-items: center;
   justify-content: center;
-  background: ${Colors.DARK};
+  background: ${Backgrounds.PRIMARY_BLACK};
   width: 100%;
-  border: 1px solid red;
-
-  align-items: flex-start;
+  align-items: center;
 `;
 
 export const ButtonContainer = styled.View`
