@@ -2,10 +2,15 @@ import {useTypeSelector} from '../../core/hooks/useTypeSelector';
 import {useEffect, useState} from 'react';
 import {generationRandom} from '../../core/utils/helpers/generationRandom';
 import {Word} from '../../core/types/word';
+import {Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 export const useController = () => {
   const {words} = useTypeSelector(state => state.word);
+  const navigate = useNavigation<any>();
+
   const [index, setIndex] = useState(0);
+  const [isGameStart, setIsGameStart] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -14,17 +19,13 @@ export const useController = () => {
   const [word, setWord] = useState<Word | null>(null);
   const [answer, setAnswer] = useState('');
 
-  useEffect(() => {
-    setQuestionWords(words.filter(elem => elem.isInGame));
-  }, [words]);
-
-  useEffect(() => {
-    setWord(questionWords[index]);
-  }, [index, questionWords]);
-
   const updateWord = () => {
+    if (!isShowAnswer && word) {
+      setQuestionWords(prev => prev.filter(elem => elem.id !== word.id));
+    } else {
+      setIndex(generationRandom(questionWords));
+    }
     setAnswer('');
-    setIndex(generationRandom(questionWords));
   };
   const handelShowAnswer = () => {
     setIsShowAnswer(true);
@@ -48,6 +49,28 @@ export const useController = () => {
       }, 500);
     }
   };
+
+  useEffect(() => {
+    setQuestionWords(words.filter(elem => elem.isInGame));
+  }, [words]);
+
+  useEffect(() => {
+    if (isGameStart && !questionWords.length) {
+      navigate.goBack();
+      Alert.alert('YOU WON', 'Well done keep it up');
+    } else {
+      setIndex(generationRandom(questionWords));
+    }
+  }, [isGameStart, questionWords]);
+
+  useEffect(() => {
+    setWord(questionWords[index]);
+  }, [index, questionWords]);
+
+  useEffect(() => {
+    setIsGameStart(true);
+  }, []);
+
   return {
     isShowAnswer,
     isDisabled,

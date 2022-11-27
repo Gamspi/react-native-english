@@ -9,7 +9,6 @@ import {
   StyledGameWord,
 } from './styled';
 import Button from '../../core/component/button/Button';
-import {View} from 'react-native';
 
 const GameLayout = () => {
   const {
