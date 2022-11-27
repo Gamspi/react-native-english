@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import Input from '../../../addWord/components/Input/input';
+import Input from '../../../core/component/Input/input';
 type Props = {
   searchValue: string;
   setSearchValue: React.Dispatch<string>;

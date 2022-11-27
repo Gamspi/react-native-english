@@ -1,7 +1,7 @@
 import React from 'react';
 import Screen from '../../core/component/screen/Screen';
 import {useController} from './controller';
-import Input from '../../addWord/components/Input/input';
+import Input from '../../core/component/Input/input';
 import {StyledGameAnswer, StyledGamePage, StyledGameWord} from './styled';
 import Button from '../../core/component/button/Button';
 import {View} from 'react-native';

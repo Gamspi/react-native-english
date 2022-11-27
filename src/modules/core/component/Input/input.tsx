@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 import {input, StiledInput, StiledLabel} from './styled';
-import {Backgrounds, Colors} from '../../../core/styles/variables';
+import {Backgrounds, Colors} from '../../styles/variables';
 import {Animated, TextInput} from 'react-native';
-import {shadows} from '../../../core/styles/shadows';
+import {shadows} from '../../styles/shadows';
 import LinearGradient from 'react-native-linear-gradient';
 import ComponentProps = Animated.ComponentProps;
 

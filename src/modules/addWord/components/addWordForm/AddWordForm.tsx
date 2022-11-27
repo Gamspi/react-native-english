@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import Input from '../Input/input';
+import Input from '../../../core/component/Input/input';
 import {
   StyledAddWordForm,
   StyledAddWordSwitch,

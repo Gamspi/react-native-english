@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {Backgrounds, Colors} from '../../../core/styles/variables';
+import {Backgrounds, Colors} from '../../styles/variables';
 import {StyleSheet} from 'react-native';
 
 export const StiledInput = styled.TextInput`
