@@ -5,20 +5,29 @@ import {Animated, TextInput} from 'react-native';
 import {shadows} from '../../styles/shadows';
 import LinearGradient from 'react-native-linear-gradient';
 import ComponentProps = Animated.ComponentProps;
+import {useController} from './controller';
 
 type Props = {
   label?: string;
 };
-const Input = ({label, ...props}: ComponentProps<TextInput> & Props) => (
-  <>
-    {label && <StiledLabel>{label}</StiledLabel>}
-    <LinearGradient
-      start={{x: 0, y: 0}}
-      end={{x: 1, y: 0}}
-      colors={[Backgrounds.SECONDARY_BLACK, Backgrounds.THIRD_BLACK]}
-      style={{...input.gradient, ...shadows.input}}>
-      <StiledInput {...props} placeholderTextColor={Colors.LIGHT_DARK} />
-    </LinearGradient>
-  </>
-);
+const Input = ({label, ...props}: ComponentProps<TextInput> & Props) => {
+  const {leftColor, handelOnFocus, handlerOnBlur} = useController();
+  return (
+    <>
+      {label && <StiledLabel>{label}</StiledLabel>}
+      <LinearGradient
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        colors={[`rgb(${leftColor.join(', ')});`, Backgrounds.THIRD_BLACK]}
+        style={{...input.gradient, ...shadows.input}}>
+        <StiledInput
+          {...props}
+          placeholderTextColor={Colors.LIGHT_DARK}
+          onFocus={handelOnFocus}
+          onBlur={handlerOnBlur}
+        />
+      </LinearGradient>
+    </>
+  );
+};
 export default memo(Input);
