@@ -17,6 +17,5 @@ export const StiledLabel = styled.Text`
 export const input = StyleSheet.create({
   gradient: {
     borderRadius: 10,
-    marginBottom: 32,
   },
 });
