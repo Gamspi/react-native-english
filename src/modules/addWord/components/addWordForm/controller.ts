@@ -52,7 +52,7 @@ export const useController = () => {
   }, [updateId, words]);
 
   const handlerEnglishOnInput = useCallback(
-    e => setLabel(e.replace(/([^a-z\s'])|(\s(?=\s))|('(?='))/gi, '')),
+    e => setLabel(e.replace(/([^a-z\s-'])|(\s(?=\s))|('(?='))/gi, '')),
     [],
   );
   const handelSetIsInGame = useCallback(() => {

@@ -4,6 +4,7 @@ import {
   StyledAddWordForm,
   StyledAddWordSwitch,
   StyledAddWordSwitchText,
+  StyledInputContainer,
 } from './stiled';
 import {useController} from './controller';
 import Checkbox from '../../../core/component/checkbox/Checkbox';
@@ -31,19 +32,23 @@ const AddWordForm = () => {
         </StyledAddWordSwitchText>
         <MySwitch callBack={handelSetIsInGame} value={isInGame} />
       </StyledAddWordSwitch>
+      <StyledInputContainer>
+        <Input
+          placeholder="Word"
+          value={label}
+          onChangeText={handlerEnglishOnInput}
+          label="Word"
+        />
+      </StyledInputContainer>
+      <StyledInputContainer>
+        <Input
+          placeholder="Value"
+          value={value}
+          onChangeText={setValue}
+          label="Value"
+        />
+      </StyledInputContainer>
 
-      <Input
-        placeholder="Word"
-        value={label}
-        onChangeText={handlerEnglishOnInput}
-        label="Word"
-      />
-      <Input
-        placeholder="Value"
-        value={value}
-        onChangeText={setValue}
-        label="Value"
-      />
       {typeTab.map(item => (
         <Checkbox
           isActive={item.id === activeCheckboxId}

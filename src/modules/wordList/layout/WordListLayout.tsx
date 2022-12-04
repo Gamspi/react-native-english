@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useRef, useState} from 'react';
+import React, {memo} from 'react';
 import WordList from '../components/wordList/wordList';
 import Screen from '../../core/component/screen/Screen';
 import Search from '../components/search/search';
