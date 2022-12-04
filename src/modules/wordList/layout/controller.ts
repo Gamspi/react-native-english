@@ -20,25 +20,23 @@ export const useController = () => {
   }, [searchValue, words]);
   const animationValue = useRef(new Animated.Value(0)).current;
   const [isShowSearch, setIsShowSearch] = useState(true);
-  const fadeOut = () => {
+  const handlerAnimateSearch = (toValue: number) =>
     Animated.timing(animationValue, {
       isInteraction: undefined,
       useNativeDriver: false,
-      toValue: 50,
+      toValue: toValue,
       duration: 300,
-    }).start();
+    });
+  const fadeOut = () => {
+    handlerAnimateSearch(50).start();
+  };
+  const fadeIn = () => {
+    handlerAnimateSearch(0).start();
   };
   useEffect(() => {
     !isShowSearch ? fadeOut() : fadeIn();
   }, [isShowSearch]);
-  const fadeIn = () => {
-    Animated.timing(animationValue, {
-      isInteraction: undefined,
-      useNativeDriver: false,
-      toValue: 0,
-      duration: 300,
-    }).start();
-  };
+
   const scrollHeightStyles = {
     paddingTop: animationValue.interpolate({
       inputRange: [0, 50],
