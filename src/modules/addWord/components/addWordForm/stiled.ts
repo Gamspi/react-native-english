@@ -16,6 +16,3 @@ export const StyledAddWordSwitchText = styled.Text`
   color: ${Colors.WHITE};
   opacity: ${({isInGame}) => (isInGame ? 1 : 0.7)};
 `;
-export const StyledInputContainer = styled.View`
-  margin-bottom: 32px;
-`;

@@ -4,13 +4,13 @@ import {
   StyledAddWordForm,
   StyledAddWordSwitch,
   StyledAddWordSwitchText,
-  StyledInputContainer,
 } from './stiled';
 import {useController} from './controller';
 import Checkbox from '../../../core/component/checkbox/Checkbox';
 import {typeTab} from '../../constants/constants';
 import MySwitch from '../../../core/component/mySwitch/MySwitch';
 import Button from '../../../core/component/button/Button';
+import MarginContainer from '../../../core/component/marginContainer/MarginContainer';
 
 const AddWordForm = () => {
   const {
@@ -32,22 +32,22 @@ const AddWordForm = () => {
         </StyledAddWordSwitchText>
         <MySwitch callBack={handelSetIsInGame} value={isInGame} />
       </StyledAddWordSwitch>
-      <StyledInputContainer>
+      <MarginContainer>
         <Input
           placeholder="Word"
           value={label}
           onChangeText={handlerEnglishOnInput}
           label="Word"
         />
-      </StyledInputContainer>
-      <StyledInputContainer>
+      </MarginContainer>
+      <MarginContainer>
         <Input
           placeholder="Value"
           value={value}
           onChangeText={setValue}
           label="Value"
         />
-      </StyledInputContainer>
+      </MarginContainer>
 
       {typeTab.map(item => (
         <Checkbox

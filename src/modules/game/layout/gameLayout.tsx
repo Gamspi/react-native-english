@@ -9,6 +9,7 @@ import {
   StyledGameWord,
 } from './styled';
 import Button from '../../core/component/button/Button';
+import MarginContainer from '../../core/component/marginContainer/MarginContainer';
 
 const GameLayout = () => {
   const {
@@ -37,7 +38,9 @@ const GameLayout = () => {
             </StyledGameAnswer>
           </>
         )}
-        <Input value={answer} onChangeText={setAnswer} />
+        <MarginContainer>
+          <Input value={answer} onChangeText={setAnswer} />
+        </MarginContainer>
         <StyledGameButtonContainer>
           <Button
             title="I DON'T KNOW"
