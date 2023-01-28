@@ -5,6 +5,7 @@ import Search from '../components/search/search';
 import {useController} from './controller';
 import {Animated, View} from 'react-native';
 import {styles} from '../components/wordList/styled';
+import MarginContainer from '../../core/component/marginContainer/MarginContainer';
 
 const AnimationView = Animated.createAnimatedComponent(View);
 const AnimationScrollView = Animated.createAnimatedComponent(View);
@@ -24,7 +25,9 @@ const WordListLayout = () => {
         <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </AnimationView>
       <AnimationScrollView style={scrollHeightStyles}>
-        <WordList words={computedWords} setIsShow={setIsShowSearch} />
+        <MarginContainer>
+          <WordList words={computedWords} setIsShow={setIsShowSearch} />
+        </MarginContainer>
       </AnimationScrollView>
     </Screen>
   );

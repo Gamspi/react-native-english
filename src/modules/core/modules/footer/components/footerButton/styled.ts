@@ -5,14 +5,14 @@ import {Backgrounds} from '../../../../styles/variables';
 
 export const StyledFooterButton = styled.View`
   align-items: center;
-  border-radius: ${({isActive}) => (isActive ? '30px' : '25px')};
+  border-radius: ${({isActive}) => (isActive ? '25px' : '30px')};
   overflow: hidden;
   border: 1px solid ${Backgrounds.SECONDARY_RED};
 `;
 
 export const StyledFooterButtonImageContainer = styled.View<Props>`
-  width: ${({isActive}) => (isActive ? '60px' : '50px')};
-  height: ${({isActive}) => (isActive ? '60px' : '50px')};
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   overflow: hidden;

@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useRef} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {
   StyledWordItem,
@@ -7,7 +7,7 @@ import {
   StyledWordItemTitle,
   StyledWordItemValue,
   StyledWordItemValueContainer,
-} from './styled';
+} from './style';
 import {useController} from './controller';
 import {Word} from '../../../core/types/word';
 import MySwitch from '../../../core/component/mySwitch/MySwitch';
@@ -19,9 +19,15 @@ type Props = {
 
 const WordItem = ({item, ...props}: Props) => {
   const {value, label, type, id, isInGame} = item;
-  const {isActive, handelDeleteWord, toggleIsActive, toggleIsInGame} =
-    useController({id});
-
+  const {
+    handelDeleteWord,
+    toggleIsActive,
+    toggleIsInGame,
+    animationStyles,
+    AnimationView,
+  } = useController({id});
+  const inputEl = useRef(null);
+  console.log(inputEl && inputEl.current);
   return (
     <TouchableOpacity onPress={toggleIsActive} onLongPress={handelDeleteWord}>
       <StyledWordItem {...props}>
@@ -35,11 +41,11 @@ const WordItem = ({item, ...props}: Props) => {
           {label[0].toUpperCase() + label.slice(1)}
         </StyledWordItemTitle>
         <Text>{type}</Text>
-        {isActive && (
+        <AnimationView style={animationStyles}>
           <StyledWordItemValueContainer>
             <StyledWordItemValue>{value.join(', ')}</StyledWordItemValue>
           </StyledWordItemValueContainer>
-        )}
+        </AnimationView>
       </StyledWordItem>
     </TouchableOpacity>
   );

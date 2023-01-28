@@ -8,6 +8,7 @@ export const FooterContainer = styled.View`
   background: ${Backgrounds.PRIMARY_BLACK};
   width: 100%;
   align-items: center;
+  height: 60px;
 `;
 
 export const ButtonContainer = styled.View`

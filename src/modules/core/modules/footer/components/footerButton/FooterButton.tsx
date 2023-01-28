@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 
 import {
   StyledFooterButtonImageContainer,
@@ -12,6 +12,7 @@ import {
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import ComponentProps = Animated.ComponentProps;
 import {shadows} from '../../../../styles/shadows';
@@ -24,22 +25,52 @@ export type Props = {
 };
 const FooterButton = ({
   title,
+  isActive,
   ...props
 }: ComponentProps<Image> & ComponentProps<TouchableOpacity> & Props) => {
+  const AnimationView = Animated.createAnimatedComponent(View);
+  const animationValue = useRef(new Animated.Value(0)).current;
+  const handlerAnimateActive = useCallback(
+    (toValue: number) =>
+      Animated.timing(animationValue, {
+        isInteraction: undefined,
+        useNativeDriver: false,
+        toValue: toValue,
+        duration: 300,
+      }).start(),
+    [animationValue],
+  );
+  const animationStyles = {
+    width: animationValue.interpolate({
+      inputRange: [0, 10],
+      outputRange: [60, 50],
+      extrapolate: 'clamp',
+    }),
+    height: animationValue.interpolate({
+      inputRange: [0, 10],
+      outputRange: [60, 50],
+      extrapolate: 'clamp',
+    }),
+  };
+  useEffect(() => {
+    !isActive ? handlerAnimateActive(100) : handlerAnimateActive(0);
+  }, [handlerAnimateActive, isActive]);
   return (
     <TouchableWithoutFeedback {...props}>
       <StyledFooterButton style={shadows.circleButton} {...props}>
-        <LinearGradient
-          start={{x: 0, y: 1}}
-          end={{x: 1, y: 0}}
-          locations={[0, 1]}
-          colors={[Backgrounds.PRIMARY_RED, Backgrounds.SECONDARY_RED]}
-          style={style.gradient}>
-          <StyledFooterButtonImageContainer {...props}>
-            <StyledFooterButtonImage {...props} />
-          </StyledFooterButtonImageContainer>
-          {title && <StyledFooterButtonText>{title}</StyledFooterButtonText>}
-        </LinearGradient>
+        <AnimationView style={animationStyles}>
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            locations={[0, 1]}
+            colors={[Backgrounds.PRIMARY_RED, Backgrounds.SECONDARY_RED]}
+            style={style.gradient}>
+            <StyledFooterButtonImageContainer {...props}>
+              <StyledFooterButtonImage {...props} />
+            </StyledFooterButtonImageContainer>
+            {title && <StyledFooterButtonText>{title}</StyledFooterButtonText>}
+          </LinearGradient>
+        </AnimationView>
       </StyledFooterButton>
     </TouchableWithoutFeedback>
   );

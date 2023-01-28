@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
-import {Colors} from '../../../core/styles/variables';
+import {Backgrounds, Colors} from '../../../core/styles/variables';
 
 export const StyledStartButton = styled.View`
   padding: 10px;
-  background: blue;
+  background: ${Backgrounds.PRIMARY_RED};
   border-radius: 100px;
   align-items: center;
   justify-content: center;
