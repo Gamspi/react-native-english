@@ -9,6 +9,7 @@ type Props = {
 };
 const HomeLayout = ({checkIsFocused}: Props) => {
   const {handelStartGame} = useController({checkIsFocused});
+  console.log('test');
   return (
     <Screen>
       <StyledHomeContainer>
